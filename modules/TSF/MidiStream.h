@@ -1,4 +1,5 @@
-
+#ifndef MIDISTREAM_H
+#define MIDISTREAM_H
 #include "tsf.h"
 #include "reference.h"
 #include "resource.h"
@@ -16,11 +17,12 @@ class MidiStream : public AudioStream {
 	int note;
 	int vel;
 	char* sf_filename;
+	tsf* TSFpointer;
 public:
 	MidiStream();
 	void reset();
 	void set_position(uint64_t pos);
-	tsf * TSFpointer;
+	
 	void set_filename(char* filename);
 	void note_on(int n,int v);
 	virtual Ref<AudioStreamPlayback> instance_playback();
@@ -33,3 +35,5 @@ public:
 protected:
 	static void _bind_methods();
 };
+
+#endif 
