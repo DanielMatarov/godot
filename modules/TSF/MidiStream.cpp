@@ -10,7 +10,7 @@ MidiStream::MidiStream(){
 	note = 50;
 	vel = 50;
 	sf_filename = "florestan-subset.sf2";
-	TSFpointer;
+	tsf* TSFpointer;
 }
 
 
