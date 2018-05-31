@@ -17,18 +17,17 @@ class MidiStream : public AudioStream {
 	int note;
 	int vel;
 	char* sf_filename;
-	tsf* TSFpointer;
+	tsf* tsf_pointer;
 public:
 	MidiStream();
 	void reset();
 	void set_position(uint64_t pos);
 	
-	void set_filename(char* filename);
-	void note_on(int n,int v);
+	void set_filename(const String&filename);
+	void note_on(int n,float v);
 	virtual Ref<AudioStreamPlayback> instance_playback();
-	void set_output(enum TSFOutputMode outputmode, int samplerate, float global_gain_db);
-    float* buffer;
-	void buffer_function(float* b);
+    
+	void buffer_function(float* b, int s);
 	virtual String get_stream_name() const;
 	virtual float get_length() const { return 0; }
 

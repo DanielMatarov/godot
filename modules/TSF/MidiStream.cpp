@@ -7,10 +7,8 @@
 
 MidiStream::MidiStream(){
 	sample_rate=44100;
-	note = 50;
-	vel = 50;
-	sf_filename = "florestan-subset.sf2";
-	tsf* TSFpointer;
+	tsf_pointer = NULL;
+	gain = 0;
 }
 
 
@@ -25,27 +23,31 @@ void MidiStream::set_position(uint64_t p) {
 	pos = p;
 }
 
-void MidiStream::set_filename(char* filename) {
-	filename = sf_filename;
+void MidiStream::set_filename(const String&filename) {
+	tsf_pointer = tsf_load_filename(filename.utf8().get_data());
+	if (tsf_pointer){
+		tsf_set_output(tsf_pointer, TSF_STEREO_INTERLEAVED, sample_rate, gain);
+	}
+	else{
+		printf("error loading file");
+	}
 	
 }
 
-void MidiStream::buffer_function(float* b){
-	 b = buffer;
-	 tsf_render_float(TSFpointer, b, sample_rate, 0);
+void MidiStream::buffer_function(float* b, int s){
+	if (tsf_pointer == NULL) {
+		return;
+	}
+	else{
+		tsf_render_float(tsf_pointer, b, s, 0);
+	}
+	
 }
 
-void MidiStream::set_output(enum TSFOutputMode outputmode, int samplerate, float global_gain_db) {
-	samplerate = sample_rate;
-	global_gain_db = gain;
-	tsf_set_output(TSFpointer, TSF_STEREO_INTERLEAVED, sample_rate, gain);
-}
 
-void MidiStream::note_on(int n, int v)
+void MidiStream::note_on(int n, float v)
 {
-	n = note;
-	v = vel;
-	tsf_note_on(TSFpointer, 0, n, v);
+	tsf_note_on(tsf_pointer, 0, n, v);
 }
 
 void MidiStream::reset() {
@@ -54,9 +56,9 @@ void MidiStream::reset() {
 
 
 void MidiStream::_bind_methods() {
-	ClassDB::bind_method(D_METHOD("reset"), &MidiStream::reset);
+	ClassDB::bind_method(D_METHOD("set_filename", "filename"), &MidiStream::set_filename);
 	ClassDB::bind_method(D_METHOD("get_stream_name"), &MidiStream::get_stream_name);
-	ClassDB::bind_method(D_METHOD("note_on"), &MidiStream::note_on);
+	ClassDB::bind_method(D_METHOD("note_on", "note", "velocity"), &MidiStream::note_on);
 }
 
 

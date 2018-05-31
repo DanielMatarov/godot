@@ -1,3 +1,5 @@
+#ifndef __MIDI_STREAM_PLAYBACK_H__
+#define __MIDI_STREAM_PLAYBACK_H__
 
 #include "reference.h"
 #include "resource.h"
@@ -34,3 +36,4 @@ public:
 	MidiStreamPlayback();
 	~MidiStreamPlayback();
 };
+#endif 
