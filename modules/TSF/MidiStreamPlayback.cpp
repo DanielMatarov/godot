@@ -9,7 +9,7 @@
 MidiStreamPlayback::MidiStreamPlayback()
 		: active(false) {
 		AudioServer::get_singleton()->lock();
-		pcm_buffer = AudioServer::get_singleton()->audio_data_alloc(PCM_BUFFER_SIZE);
+		pcm_buffer = AudioServer::get_singleton()->audio_data_alloc(PCM_BUFFER_SIZE*sizeof(float)*2);
 		zeromem(pcm_buffer, PCM_BUFFER_SIZE);
 		AudioServer::get_singleton()->unlock();
 	}
@@ -44,14 +44,11 @@ void MidiStreamPlayback::mix(AudioFrame *p_buffer, float p_rate, int p_frames) {
 	if (!active) {
 		return;
 	}
-	zeromem(pcm_buffer, PCM_BUFFER_SIZE);
-	float * buf = (float *)pcm_buffer;
-	
+	float *buf = (float *)pcm_buffer;
+	base->buffer_function(buf, MAX(PCM_BUFFER_SIZE, p_frames));
 
-	for (int i = 0; i < p_frames; i++) {
-		float sample = float(buf[i]) / 32767.0;
-		p_buffer[i] = AudioFrame(sample, sample);
-	    base->buffer_function((float*)pcm_buffer);
+	for (int i = 0, j = 0; i < p_frames; i++) {
+		p_buffer[i] = AudioFrame(buf[i / 2 + 0], buf[i / 2 + 1]);
 	}
 }
 
