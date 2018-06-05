@@ -47,11 +47,16 @@ void MidiStream::buffer_function(float* b, int s){
 
 void MidiStream::note_on(int n, float v)
 {
-	tsf_note_on(tsf_pointer, 0, n, v);
+	tsf_note_on(tsf_pointer, preset, n, v);
 }
 
 void MidiStream::reset() {
 	set_position(0);
+}
+
+void MidiStream::set_preset(int pr)
+{
+	preset = pr;
 }
 
 
@@ -59,6 +64,7 @@ void MidiStream::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("set_filename", "filename"), &MidiStream::set_filename);
 	ClassDB::bind_method(D_METHOD("get_stream_name"), &MidiStream::get_stream_name);
 	ClassDB::bind_method(D_METHOD("note_on", "note", "velocity"), &MidiStream::note_on);
+	ClassDB::bind_method(D_METHOD("set_preset","preset"), &MidiStream::set_preset);
 }
 
 
