@@ -14,15 +14,14 @@ class MidiStream : public AudioStream {
 	uint64_t pos;
 	int sample_rate;
 	float gain;
-	int note;
-	int vel;
+	int preset;
 	char* sf_filename;
 	tsf* tsf_pointer;
 public:
 	MidiStream();
 	void reset();
 	void set_position(uint64_t pos);
-	
+	void set_preset(int pr);
 	void set_filename(const String&filename);
 	void note_on(int n,float v);
 	virtual Ref<AudioStreamPlayback> instance_playback();
