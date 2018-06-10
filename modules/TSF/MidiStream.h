@@ -1,7 +1,7 @@
 #ifndef MIDISTREAM_H
 #define MIDISTREAM_H
 #include "tsf.h"
-#include "tml.h"
+
 #include "reference.h"
 #include "resource.h"
 #include "servers/audio/audio_stream.h" 
@@ -18,7 +18,6 @@ class MidiStream : public AudioStream {
 	int preset;
 	char* sf_filename;
 	tsf* tsf_pointer;
-	tml_message* midi_pointer;
 	double midi_pb_time;
 public:
 	MidiStream();
