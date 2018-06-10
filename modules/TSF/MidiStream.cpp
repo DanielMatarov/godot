@@ -3,8 +3,9 @@
 #include "servers/audio/audio_stream.h"
 #include "MidiStream.h"
 #include "MidiStreamPlayback.h"
+#include "tml.h"
 
-
+tml_message* midi_pointer;
 
 MidiStream::MidiStream(){
 	sample_rate=44100;
@@ -105,6 +106,7 @@ void MidiStream::midi_file_reading(float* b, int s) {
 					break;
 			}
 		}
+		tsf_set_output(tsf_pointer, TSF_STEREO_INTERLEAVED, sample_rate, gain);
 		buffer_function(b, sampleBlock);
 	}
 
