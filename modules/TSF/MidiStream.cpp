@@ -3,14 +3,13 @@
 #include "servers/audio/audio_stream.h"
 #include "MidiStream.h"
 #include "MidiStreamPlayback.h"
-#include "tml.h"
 
-tml_message* midi_pointer;
 
 MidiStream::MidiStream(){
 	sample_rate=44100;
 	tsf_pointer = NULL;
 	gain = 0;
+	midi_pointer = NULL;
 }
 
 
@@ -81,7 +80,7 @@ void MidiStream::midi_load_filename(const String&filename)
 	midi_pointer = tml_load_filename(filename.utf8().get_data());
 }
 
-void MidiStream::midi_file_reading(float* b, int s) {
+void MidiStream::midi_file_reading(uint8_t *b, int s) {
 
 	int sampleBlock, sampleCount = (s / (2 * sizeof(float)));
 	for (sampleBlock = TSF_RENDER_EFFECTSAMPLEBLOCK; sampleCount; sampleCount -= sampleBlock, b += (sampleBlock * (2 * sizeof(float)))) {
@@ -92,6 +91,8 @@ void MidiStream::midi_file_reading(float* b, int s) {
 		{
 			switch (midi_pointer->type)
 			{
+				case TML_PROGRAM_CHANGE:
+					tsf_channel_set_presetnumber(tsf_pointer, midi_pointer->channel, midi_pointer->program, (midi_pointer->channel == 9));
 				case TML_NOTE_ON:
 					tsf_channel_note_on(tsf_pointer, midi_pointer->channel, midi_pointer->key, midi_pointer->velocity / 127.0f);
 					break;
@@ -106,8 +107,8 @@ void MidiStream::midi_file_reading(float* b, int s) {
 					break;
 			}
 		}
-		tsf_set_output(tsf_pointer, TSF_STEREO_INTERLEAVED, sample_rate, gain);
-		buffer_function(b, sampleBlock);
+		
+		
 	}
 
 }
