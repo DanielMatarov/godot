@@ -29,6 +29,7 @@ public:
 	void midi_load_filename(const String&filename);
 	void midi_file_reading(uint8_t *b, int s);
 	void note_on(int n,float v);
+	void note_off(int n);
 	virtual Ref<AudioStreamPlayback> instance_playback();
     
 	void buffer_function(float* b, int s);
