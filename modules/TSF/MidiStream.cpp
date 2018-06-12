@@ -10,6 +10,7 @@ MidiStream::MidiStream(){
 	tsf_pointer = NULL;
 	gain = 0;
 	midi_pointer = NULL;
+	midi_pb_time = 0;
 }
 
 
@@ -39,10 +40,7 @@ void MidiStream::buffer_function(float* b, int s){
 	if (tsf_pointer == NULL) {
 		return;
 	}
-	else{
 		tsf_render_float(tsf_pointer, b, s, 0);
-	}
-	
 }
 
 
@@ -77,6 +75,7 @@ String MidiStream::get_stream_name() const {
 
 void MidiStream::midi_load_filename(const String&filename)
 {
+	midi_pb_time = 0;
 	midi_pointer = tml_load_filename(filename.utf8().get_data());
 }
 

@@ -1,10 +1,9 @@
-
-#include "MidiStreamPlayback.h"
 #include "MidiStream.h"
+#include "MidiStreamPlayback.h"
 #include "math/math_funcs.h"
 #include "print_string.h"
 
-
+class MidiStream;
 
 MidiStreamPlayback::MidiStreamPlayback()
 		: active(false) {
@@ -45,18 +44,12 @@ void MidiStreamPlayback::mix(AudioFrame *p_buffer, float p_rate, int p_frames) {
 		return;
 	}
 	float *buf = (float *)pcm_buffer;
-	if (base->midi_pointer == NULL) {
-		base->buffer_function(buf, MIN(PCM_BUFFER_SIZE, p_frames));
+	if (base->midi_pointer != NULL) {
+		base->midi_file_reading((uint8_t*)buf, MAX(PCM_BUFFER_SIZE, p_frames) * 2);
 	}
-	else {
-		base->midi_file_reading((uint8_t*)buf, MAX(PCM_BUFFER_SIZE, p_frames)*2);
-		base->buffer_function(buf, MIN(PCM_BUFFER_SIZE, p_frames));
-	}
-	
-	
 		
+	base->buffer_function(buf, MIN(PCM_BUFFER_SIZE, p_frames));
 	
-
 	for (int i = 0; i < p_frames; i++) {
 		float l = *buf++;
 		float r = *buf++;
