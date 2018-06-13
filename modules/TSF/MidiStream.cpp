@@ -63,6 +63,12 @@ void MidiStream::set_preset(int pr)
 	preset = pr;
 }
 
+char* MidiStream::get_preset_name(int pr)
+{
+ 	 return tsf_get_presetname(tsf_pointer, pr);
+	
+}
+
 
 void MidiStream::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("set_filename", "filename"), &MidiStream::set_filename);
@@ -71,6 +77,8 @@ void MidiStream::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("note_on", "note", "velocity"), &MidiStream::note_on);
 	ClassDB::bind_method(D_METHOD("note_off", "note"), &MidiStream::note_off);
 	ClassDB::bind_method(D_METHOD("set_preset","preset"), &MidiStream::set_preset);
+	ClassDB::bind_method(D_METHOD("get_preset_name", "preset"), &MidiStream::get_preset_name);
+	
 }
 
 
