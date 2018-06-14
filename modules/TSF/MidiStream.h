@@ -26,6 +26,7 @@ public:
 	void set_position(uint64_t pos);
 	void set_preset(int pr);
 	char* get_preset_name(int pr);
+	int get_preset_count();
 	void set_filename(const String&filename);
 	void midi_load_filename(const String&filename);
 	void midi_file_reading(uint8_t *b, int s);
