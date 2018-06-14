@@ -74,6 +74,30 @@ int MidiStream::get_preset_count()
 	return tsf_get_presetcount(tsf_pointer);
 }
 
+void MidiStream::set_channel_pan(int chn, float pan)
+{
+	tsf_channel_set_pan(tsf_pointer, chn, pan);
+}
+
+void MidiStream::set_channel_volume(int chn, float vol)
+{
+	tsf_channel_set_volume(tsf_pointer, chn, vol);
+}
+
+void MidiStream::set_channel_tuning(int chn, float tun)
+{
+	tsf_channel_set_tuning(tsf_pointer, chn, tun);
+}
+
+void MidiStream::set_channel_pitchwheel(int chn, float pw)
+{
+	tsf_channel_set_pitchwheel(tsf_pointer, chn, pw);
+}
+
+void MidiStream::set_channel_pitchrange(int chn, float pr)
+{
+	tsf_channel_set_pitchrange(tsf_pointer, chn, pr);
+}
 
 void MidiStream::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("set_filename", "filename"), &MidiStream::set_filename);
@@ -84,7 +108,11 @@ void MidiStream::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("set_preset","preset"), &MidiStream::set_preset);
 	ClassDB::bind_method(D_METHOD("get_preset_name", "preset"), &MidiStream::get_preset_name);
 	ClassDB::bind_method(D_METHOD("get_preset_count"), &MidiStream::get_preset_count);
-	
+	ClassDB::bind_method(D_METHOD("set_channel_pan", "channel", "pan"), &MidiStream::set_channel_pan);
+	ClassDB::bind_method(D_METHOD("set_channel_tuning", "channel", "tuning"), &MidiStream::set_channel_tuning);
+	ClassDB::bind_method(D_METHOD("set_channel_volume", "channel", "volume"), &MidiStream::set_channel_volume);
+	ClassDB::bind_method(D_METHOD("set_channel_pitchwheel", "channel", "pitch_wheel"), &MidiStream::set_channel_pitchwheel);
+	ClassDB::bind_method(D_METHOD("set_channel_pitchrange", "channel", "pitch_range"), &MidiStream::set_channel_pitchrange);
 }
 
 
