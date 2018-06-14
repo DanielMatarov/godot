@@ -32,6 +32,11 @@ public:
 	void midi_file_reading(uint8_t *b, int s);
 	void note_on(int n,float v);
 	void note_off(int n);
+	void set_channel_pan(int chn, float pan);
+	void set_channel_tuning(int chn, float tun);
+	void set_channel_volume(int chn, float vol);
+	void set_channel_pitchwheel(int chn, float pw);
+	void set_channel_pitchrange(int chn, float pr);
 	virtual Ref<AudioStreamPlayback> instance_playback();
     
 	void buffer_function(float* b, int s);
