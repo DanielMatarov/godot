@@ -6,7 +6,6 @@
 #include "variant_parser.h"
 #include "io/json.h"
 #include "dictionary.h"
-#include "Midistream.h"
 
 class Sfont : public Resource {
 	GDCLASS(Sfont, Resource);

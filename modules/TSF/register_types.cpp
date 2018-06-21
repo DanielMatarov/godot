@@ -5,7 +5,7 @@
 #include "MidiStreamPlayback.h"
 
 void register_TSF_types() {
-
+		
         ClassDB::register_class<MidiStream>();
         ClassDB::register_class<MidiStreamPlayback>();
 }
