@@ -6,6 +6,7 @@
 #include "variant_parser.h"
 #include "io/json.h"
 #include "dictionary.h"
+#include "MidiStream.h"
 
 class Sfont : public Resource {
 	GDCLASS(Sfont, Resource);
@@ -25,6 +26,8 @@ public:
 		while (!file->eof_reached()) {
 			buf += file->get_line();
 		}
+		// thinking of adding the following line- 
+		// base->tsf_pointer = tsf_load_buffer(file->get_buffer(), file->get_lenght())
 		String err_string;
 		int err_line;
 		JSON cmd;
