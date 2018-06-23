@@ -1,14 +1,14 @@
 #include "sfont_loader.h"
-#include "sfont.h"
+#include "MidiStream.h"
 
 ResourceFormatLoaderSfont::ResourceFormatLoaderSfont(){}
 
-RES ResourceFormatLoaderSfont::load(const String &p_path, const String &p_original_path, Error *r_error) {
-	Sfont *my = memnew(Sfont);
+RES ResourceFormatLoaderSfont::load(const String &filename, Error *r_error) {
+	MidiStream *base = memnew(MidiStream);
 	if (r_error)
 		*r_error = OK;
-	Error err = my->set_file(p_path);
-	return Ref<Sfont>(my);
+	base->set_filename(filename);
+	return Ref<MidiStream>(base);
 }
 
 void ResourceFormatLoaderSfont::get_recognized_extensions(List<String> *p_extensions) const {
