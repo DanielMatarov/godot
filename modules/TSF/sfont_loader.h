@@ -12,6 +12,7 @@ public:
 
 	ResourceFormatLoaderSfont();
 	virtual ~ResourceFormatLoaderSfont();
+	int test;
 	
 };
 
