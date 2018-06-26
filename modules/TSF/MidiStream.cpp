@@ -5,6 +5,7 @@
 #include "MidiStreamPlayback.h"
 
 
+
 MidiStream::MidiStream(){
 	sample_rate=44100;
 	tsf_pointer = NULL;
@@ -18,6 +19,7 @@ Ref<AudioStreamPlayback> MidiStream::instance_playback() {
 	Ref<MidiStreamPlayback> talking_tree;
 	talking_tree.instance();
 	talking_tree->base = Ref<MidiStream>(this);
+	talking_tree->set_file(file);
 	return talking_tree;
 }
 
@@ -26,6 +28,7 @@ void MidiStream::set_position(uint64_t p) {
 }
 
 void MidiStream::set_filename(const String&filename) {
+	
 	tsf_pointer = tsf_load_filename(filename.utf8().get_data());
 	if (tsf_pointer){
 		tsf_set_output(tsf_pointer, TSF_STEREO_INTERLEAVED, sample_rate, gain);
