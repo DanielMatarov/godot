@@ -72,3 +72,14 @@ float MidiStreamPlayback::get_length() const {
 bool MidiStreamPlayback::is_playing() const {
 	return active;
 }
+
+Error MidiStreamPlayback::set_file(const String &p_file) {
+	file = p_file;
+	
+	Error err;
+	f = FileAccess::open(file, FileAccess::READ, &err);
+
+	if (err) {
+		ERR_FAIL_COND_V(err, err);
+	}
+}

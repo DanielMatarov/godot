@@ -4,13 +4,14 @@
 #include "tml.h"
 #include "reference.h"
 #include "resource.h"
-#include "servers/audio/audio_stream.h" 
+#include "servers/audio/audio_stream.h"
+
 
 
 class MidiStream : public AudioStream {
 	GDCLASS(MidiStream, AudioStream)
 	OBJ_SAVE_TYPE(AudioStream)
-
+	String file;
 	friend class MidiStreamPlayback;
 	uint64_t pos;
 	int sample_rate;
@@ -42,8 +43,9 @@ public:
 	void buffer_function(float* b, int s);
 	virtual String get_stream_name() const;
 	virtual float get_length() const { return 0; }
-	
+	void set_file(const String &p_file) { file = p_file; }
 
+	
 protected:
 	static void _bind_methods();
 };

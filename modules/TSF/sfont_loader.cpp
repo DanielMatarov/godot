@@ -17,7 +17,7 @@ RES ResourceFormatLoaderSfont::load(const String &p_path, const String &p_origin
 	MidiStream *base = memnew(MidiStream);
 	if (r_error)
 		*r_error = OK;
-	base->set_filename(p_path);
+	base->set_file(p_path);
 	return Ref<MidiStream>(base);
 }
 
