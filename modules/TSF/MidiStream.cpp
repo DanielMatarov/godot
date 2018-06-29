@@ -19,7 +19,6 @@ Ref<AudioStreamPlayback> MidiStream::instance_playback() {
 	Ref<MidiStreamPlayback> talking_tree;
 	talking_tree.instance();
 	talking_tree->base = Ref<MidiStream>(this);
-	talking_tree->set_file(file);
 	return talking_tree;
 }
 
@@ -37,6 +36,10 @@ void MidiStream::set_filename(const String&filename) {
 		printf("error loading file");
 	}
 	
+}
+
+void MidiStream::load_memory(const void* buffer, int size) {
+	tsf_pointer = tsf_load_memory(buffer, size);
 }
 
 void MidiStream::buffer_function(float* b, int s){
