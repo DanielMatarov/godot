@@ -1,19 +1,30 @@
 #ifndef SFONT_LOADER_H
 #define SFONT_LOADER_H
 
-#include "io/resource_loader.h"
+#include "MidiStream.h"
+#include "MidiStreamPlayback.h"
+#include "io/resource_import.h"
 
-class ResourceFormatLoaderSfont : public ResourceFormatLoader {
+class ResourceImporterSfont : public ResourceImporter {
+	GDCLASS(ResourceImporterSfont, ResourceImporter)
+
 public:
-	virtual RES load(const String &p_path, const String &p_original_path, Error *r_error);
+	virtual String get_importer_name() const;
+	virtual String get_visible_name() const;
 	virtual void get_recognized_extensions(List<String> *p_extensions) const;
-	virtual bool handles_type(const String &p_type) const;
-	virtual String get_resource_type(const String &p_path) const;
+	virtual String get_save_extension() const;
+	virtual String get_resource_type() const;
 
-	ResourceFormatLoaderSfont();
-	virtual ~ResourceFormatLoaderSfont();
-	int test;
-	
+	virtual int get_preset_count() const;
+	virtual String get_preset_name(int p_idx) const;
+
+	virtual void get_import_options(List<ImportOption> *r_options, int p_preset = 0) const;
+	virtual bool get_option_visibility(const String &p_option, const Map<StringName, Variant> &p_options) const;
+
+	virtual Error import(const String &p_source_file, const String &p_save_path, const Map<StringName, Variant> &p_options, List<String> *r_platform_variants, List<String> *r_gen_files = NULL);
+
+	ResourceImporterSfont();
 };
+
 
 #endif
