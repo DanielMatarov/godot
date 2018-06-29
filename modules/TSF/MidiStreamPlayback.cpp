@@ -73,11 +73,4 @@ bool MidiStreamPlayback::is_playing() const {
 	return active;
 }
 
-Error MidiStreamPlayback::set_file(const String &p_file) {
-	file = p_file;
-	
-	Error err;
-	f = FileAccess::open(file, FileAccess::READ, &err);
 
-	return err;
-}

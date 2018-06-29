@@ -36,11 +36,9 @@ String  ResourceImporterSfont::get_preset_name(int p_idx) const {
 	return String();
 }
 
-void ResourceImporterSfont::get_import_options(List<ImportOption> *r_options, int p_preset) const {
 
-}
 
-Error ResourceImporterSfont::import(const String &p_source_file, const String &p_save_path, const Map<StringName, Variant> &p_options, List<String> *r_platform_variants, List<String> *r_gen_files){
+Error ResourceImporterSfont::import(const String &p_source_file, const String &p_save_path, const Map<StringName, Variant> &p_options, List<String> *r_platform_variants, const PoolVector<uint8_t> &p_data, List<String> *r_gen_files){
 
 	FileAccess *f = FileAccess::open(p_source_file, FileAccess::READ);
 	if (!f) {
@@ -50,6 +48,7 @@ Error ResourceImporterSfont::import(const String &p_source_file, const String &p
 	size_t len = f->get_len();
 
 	PoolVector<uint8_t> data;
+	PoolVector<uint8_t>::Read src_datar = p_data.read();
 	data.resize(len);
 	PoolVector<uint8_t>::Write w = data.write();
 
@@ -60,7 +59,7 @@ Error ResourceImporterSfont::import(const String &p_source_file, const String &p
 	Ref<MidiStream> midi_stream;
 	midi_stream.instance();
 
-	midi_stream->set_filename(p_source_file);
+	midi_stream->load_memory((const void*)src_datar.ptr(), data.size());
 
 	return ResourceSaver::save(p_save_path + ".sf2str", midi_stream);
 

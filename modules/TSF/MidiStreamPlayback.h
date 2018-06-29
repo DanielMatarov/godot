@@ -37,6 +37,6 @@ public:
 	virtual float get_length() const; //if supported, otherwise return 0
 	MidiStreamPlayback();
 	~MidiStreamPlayback();
-	Error set_file(const String &p_file);
+	
 };
 #endif 
