@@ -11,6 +11,7 @@
 class MidiStream : public AudioStream {
 	GDCLASS(MidiStream, AudioStream)
 	OBJ_SAVE_TYPE(AudioStream)
+	RES_BASE_EXTENSION("sf2str")
 	String file;
 	friend class MidiStreamPlayback;
 	uint64_t pos;
