@@ -38,8 +38,9 @@ void MidiStream::set_filename(const String&filename) {
 	
 }
 
-void MidiStream::load_memory(const void* buffer, int size) {
-	tsf_pointer = tsf_load_memory(buffer, size);
+void MidiStream::load_memory(const PoolVector<uint8_t> &p_data) {
+	PoolVector<uint8_t>::Read src_datar = p_data.read();
+	tsf_pointer = tsf_load_memory((const void *)src_datar.ptr(), p_data.size());
 }
 
 void MidiStream::buffer_function(float* b, int s){

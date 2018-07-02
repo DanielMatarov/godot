@@ -29,7 +29,7 @@ public:
 	char* get_preset_name(int pr);
 	int get_preset_count();
 	void set_filename(const String&filename);
-	void load_memory(const void* buffer, int size);
+	void load_memory(const PoolVector<uint8_t> &p_data);
 	void midi_load_filename(const String&filename);
 	void midi_file_reading(uint8_t *b, int s);
 	void note_on(int n,float v);
