@@ -36,34 +36,35 @@ String  ResourceImporterSfont::get_preset_name(int p_idx) const {
 	return String();
 }
 
-void ResourceImporterSfont::get_import_options(List<ImportOption> *r_options, int p_preset) const {
+void ResourceImporterSfont::get_import_options(List<ImportOption> *r_options, int p_preset=0) const {
+	
 	
 }
 
-Error ResourceImporterSfont::import(const String &p_source_file, const String &p_save_path, const Map<StringName, Variant> &p_options, List<String> *r_platform_variants, const PoolVector<uint8_t> &p_data, List<String> *r_gen_files){
-
+Error ResourceImporterSfont::import(const String &p_source_file, const String &p_save_path, const Map<StringName, Variant> &p_options, List<String> *r_platform_variants, List<String> *r_gen_files){
+	printf("beginning of function");
 	FileAccess *f = FileAccess::open(p_source_file, FileAccess::READ);
 	if (!f) {
 		ERR_FAIL_COND_V(!f, ERR_CANT_OPEN);
 	}
-
+	printf("another check");
 	size_t len = f->get_len();
-
+	printf("another check2");
 	PoolVector<uint8_t> data;
-	
+	printf("another check3");
 	data.resize(len);
 	PoolVector<uint8_t>::Write w = data.write();
-
+	printf("another check4");
 	f->get_buffer(w.ptr(), len);
-
+	printf("another check5");
 	memdelete(f);
-
+	printf("another check6");
 	Ref<MidiStream> midi_stream;
 	midi_stream.instance();
-
+	printf("another check7");
 	midi_stream->load_memory(data);
 	return ResourceSaver::save(p_save_path + ".sf2str", midi_stream);
-
+	printf("another check8");
 }
 
 ResourceImporterSfont::ResourceImporterSfont() {
