@@ -18,7 +18,7 @@ public:
 	virtual int get_preset_count() const;
 	virtual String get_preset_name(int p_idx) const;
 
-	void get_import_options(List<ImportOption> *r_options, int p_preset) const;
+	virtual void get_import_options(List<ImportOption> *r_options, int p_preset = 0) const;
 
 	virtual bool get_option_visibility(const String &p_option, const Map<StringName, Variant> &p_options) const;
 
