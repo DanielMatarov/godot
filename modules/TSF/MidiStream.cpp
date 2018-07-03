@@ -12,6 +12,9 @@ MidiStream::MidiStream(){
 	gain = 0;
 	midi_pointer = NULL;
 	midi_pb_time = 0;
+	data = NULL;
+	data_len = 0;
+	preset = 0;
 }
 
 
@@ -38,10 +41,29 @@ void MidiStream::set_filename(const String&filename) {
 	
 }
 
-void MidiStream::load_memory(const PoolVector<uint8_t> &p_data) {
-	PoolVector<uint8_t>::Read src_datar = p_data.read();
-	tsf_pointer = tsf_load_memory((const void *)src_datar.ptr(), p_data.size());
+void MidiStream::clear_data() {
+	if (data) {
+		AudioServer::get_singleton()->audio_data_free(data);
+		data = NULL;
+		data_len = 0;
+		
+	}
 }
+
+void MidiStream::set_data(const PoolVector<uint8_t> &p_data) {
+	clear_data();
+	
+	data_len = p_data.size();
+	data = AudioServer::get_singleton()->audio_data_alloc(data_len, p_data.read().ptr());
+	
+		tsf_pointer = tsf_load_memory(data, data_len);
+	if (tsf_pointer) {
+		tsf_set_output(tsf_pointer, TSF_STEREO_INTERLEAVED, sample_rate, gain);
+		
+	}
+	
+}
+
 
 void MidiStream::buffer_function(float* b, int s){
 	if (tsf_pointer == NULL) {
@@ -50,6 +72,21 @@ void MidiStream::buffer_function(float* b, int s){
 		tsf_render_float(tsf_pointer, b, s, 0);
 }
 
+PoolVector<uint8_t> MidiStream::get_data() const {
+	
+		PoolVector<uint8_t> vdata;
+	
+		if (data_len && data) {
+		vdata.resize(data_len);
+		{
+			PoolVector<uint8_t>::Write w = vdata.write();
+			copymem(w.ptr(), data, data_len);
+			}
+		
+	}
+	
+		return vdata;
+}
 
 void MidiStream::note_on(int n, float v)
 {
@@ -120,6 +157,10 @@ void MidiStream::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("set_channel_volume", "channel", "volume"), &MidiStream::set_channel_volume);
 	ClassDB::bind_method(D_METHOD("set_channel_pitchwheel", "channel", "pitch_wheel"), &MidiStream::set_channel_pitchwheel);
 	ClassDB::bind_method(D_METHOD("set_channel_pitchrange", "channel", "pitch_range"), &MidiStream::set_channel_pitchrange);
+	ClassDB::bind_method(D_METHOD("_set_data", "data"), &MidiStream::set_data);
+	ClassDB::bind_method(D_METHOD("_get_data"), &MidiStream::get_data);
+
+	ADD_PROPERTY(PropertyInfo(Variant::POOL_BYTE_ARRAY, "data", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_NOEDITOR | PROPERTY_USAGE_INTERNAL), "_set_data", "_get_data");
 }
 
 
