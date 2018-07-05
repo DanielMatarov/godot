@@ -13,11 +13,11 @@ String ResourceImporterMidi::get_visible_name() const {
 }
 
 void ResourceImporterMidi::get_recognized_extensions(List<String> *p_extensions) const {
-	p_extensions->push_back("midi");
+	p_extensions->push_back("mid");
 }
 
 String ResourceImporterMidi::get_save_extension() const {
-	return "midistr";
+	return "midstr";
 }
 
 String ResourceImporterMidi::get_resource_type() const {
@@ -69,3 +69,7 @@ Error ResourceImporterMidi::import(const String &p_source_file, const String &p_
 
 }
 
+
+ResourceImporterMidi::ResourceImporterMidi() {
+
+}

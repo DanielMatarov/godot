@@ -1,5 +1,5 @@
 
-#define TML_IMPLEMENTATION
+
 #include "midi_file_reader.h"
 #include "servers/audio/audio_stream.h"
 
@@ -27,6 +27,7 @@ void MidiFileReader::set_data(const PoolVector<uint8_t> &p_data) {
 	data = AudioServer::get_singleton()->audio_data_alloc(data_len, p_data.read().ptr());
 
 	pointer = tml_load_memory(data, data_len);
+	printf("data getting set");
 }
 
 PoolVector<uint8_t> MidiFileReader::get_data() const {
@@ -43,4 +44,12 @@ PoolVector<uint8_t> MidiFileReader::get_data() const {
 	}
 
 	return vdata;
+}
+
+
+void MidiFileReader::_bind_methods() {
+	ClassDB::bind_method(D_METHOD("_set_data", "data"), &MidiFileReader::set_data);
+	ClassDB::bind_method(D_METHOD("_get_data"), &MidiFileReader::get_data);
+
+	ADD_PROPERTY(PropertyInfo(Variant::POOL_BYTE_ARRAY, "data", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_NOEDITOR | PROPERTY_USAGE_INTERNAL), "_set_data", "_get_data");
 }

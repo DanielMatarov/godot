@@ -5,7 +5,7 @@
 #include "reference.h"
 #include "resource.h"
 #include "servers/audio/audio_stream.h"
-
+#include <stdio.h>
 
 
 class MidiStream : public AudioStream {
