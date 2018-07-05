@@ -179,6 +179,7 @@ void MidiStream::midi_load_filename(const String&filename)
 void MidiStream::midi_file_reading(uint8_t *b, int s) {
 
 	Ref<MidiFileReader> midi_file;
+	midi_file.instance();
 	midi_pointer = midi_file->pointer;
 
 	int sampleBlock, sampleCount = (s / (2 * sizeof(float)));

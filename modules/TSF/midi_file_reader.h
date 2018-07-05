@@ -1,14 +1,14 @@
 #ifndef MIDIFILEREADER_H
 #define	MIDIFILEREADER_H
-#include "tsf.h"
-#include "tml.h"
+
+#include "MidiStream.h"
 #include "reference.h"
 #include "resource.h"
 
 
-class MidiFileReader : public Resource{
+class MidiFileReader : public Resource {
 	GDCLASS(MidiFileReader, Resource)
-	OBJ_SAVE_TYPE(MidiFileReader)
+	OBJ_SAVE_TYPE(Resource)
 	RES_BASE_EXTENSION("midistr")
 	String file;
 	
