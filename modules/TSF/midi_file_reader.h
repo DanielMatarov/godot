@@ -9,7 +9,7 @@
 class MidiFileReader : public Resource {
 	GDCLASS(MidiFileReader, Resource)
 	OBJ_SAVE_TYPE(Resource)
-	RES_BASE_EXTENSION("midistr")
+	RES_BASE_EXTENSION("midstr")
 	String file;
 	
 	double midi_pb_time;
@@ -23,7 +23,7 @@ public:
 	PoolVector<uint8_t> get_data() const;
 
 protected:
-	void _bind_methods();
+	static void _bind_methods();
 };
 
 #endif
