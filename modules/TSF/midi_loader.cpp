@@ -65,7 +65,7 @@ Error ResourceImporterMidi::import(const String &p_source_file, const String &p_
 	midi_file->set_data(data);
 	ERR_FAIL_COND_V(!midi_file->get_data().size(), ERR_FILE_CORRUPT);
 
-	return ResourceSaver::save(p_save_path + ".sf2str", midi_file);
+	return ResourceSaver::save(p_save_path + ".midstr", midi_file);
 
 }
 

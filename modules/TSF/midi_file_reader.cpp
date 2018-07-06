@@ -21,13 +21,14 @@ void MidiFileReader::clear_data() {
 }
 
 void MidiFileReader::set_data(const PoolVector<uint8_t> &p_data) {
+	printf("data getting set");
 	clear_data();
 
 	data_len = p_data.size();
 	data = AudioServer::get_singleton()->audio_data_alloc(data_len, p_data.read().ptr());
 
 	pointer = tml_load_memory(data, data_len);
-	printf("data getting set");
+	
 }
 
 PoolVector<uint8_t> MidiFileReader::get_data() const {
