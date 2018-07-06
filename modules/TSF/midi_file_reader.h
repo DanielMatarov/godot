@@ -12,7 +12,7 @@ class MidiFileReader : public Resource {
 	RES_BASE_EXTENSION("midstr")
 	String file;
 	
-	double midi_pb_time;
+	
 	void *data;
 	uint32_t data_len;
 	void clear_data();
