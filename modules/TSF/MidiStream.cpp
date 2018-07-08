@@ -3,7 +3,7 @@
 #include "servers/audio/audio_stream.h"
 #include "MidiStream.h"
 #include "MidiStreamPlayback.h"
-#include "midi_file_reader.h"
+
 
 
 
@@ -160,8 +160,11 @@ void MidiStream::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("set_channel_pitchrange", "channel", "pitch_range"), &MidiStream::set_channel_pitchrange);
 	ClassDB::bind_method(D_METHOD("_set_data", "data"), &MidiStream::set_data);
 	ClassDB::bind_method(D_METHOD("_get_data"), &MidiStream::get_data);
+	ClassDB::bind_method(D_METHOD("midi_set_pointer", "midi_file"), &MidiStream::midi_set_pointer);
+	ClassDB::bind_method(D_METHOD("midi_get_pointer"), &MidiStream::midi_get_pointer);
 
 	ADD_PROPERTY(PropertyInfo(Variant::POOL_BYTE_ARRAY, "data", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_NOEDITOR | PROPERTY_USAGE_INTERNAL), "_set_data", "_get_data");
+	ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "midi_pointer", PROPERTY_HINT_RESOURCE_TYPE, "MidiFileReader"), "midi_set_pointer", "midi_get_pointer");
 }
 
 
@@ -176,12 +179,21 @@ void MidiStream::midi_load_filename(const String&filename)
 	midi_pointer = tml_load_filename(filename.utf8().get_data());
 }
 
+void MidiStream::midi_set_pointer(tml_message* midi_file) {
+	Ref<MidiFileReader> file;
+	file.instance();
+	midi_file = file->pointer;
+	midi_pointer = midi_file;
+}
+
+tml_message* MidiStream::midi_get_pointer() {
+	return midi_pointer;
+}
+
 void MidiStream::midi_file_reading(uint8_t *b, int s) {
 
-	Ref<MidiFileReader> midi_file;
-	midi_file.instance();
-	midi_pointer = midi_file->pointer;
-
+	
+	
 	int sampleBlock, sampleCount = (s / (2 * sizeof(float)));
 	for (sampleBlock = TSF_RENDER_EFFECTSAMPLEBLOCK; sampleCount; sampleCount -= sampleBlock, b += (sampleBlock * (2 * sizeof(float)))) {
 
