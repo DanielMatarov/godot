@@ -6,7 +6,7 @@
 #include "resource.h"
 #include "servers/audio/audio_stream.h"
 #include <stdio.h>
-
+#include "midi_file_reader.h"
 
 class MidiStream : public AudioStream {
 	GDCLASS(MidiStream, AudioStream)
@@ -36,7 +36,10 @@ public:
 	void set_data(const PoolVector<uint8_t> &p_data);
 	PoolVector<uint8_t> get_data() const;
 	void midi_load_filename(const String&filename);
+	void midi_set_pointer(tml_message* midi_file);
+	tml_message* midi_get_pointer();
 	void midi_file_reading(uint8_t *b, int s);
+	
 	void note_on(int n,float v);
 	void note_off(int n);
 	void set_channel_pan(int chn, float pan);
