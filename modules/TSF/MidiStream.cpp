@@ -164,7 +164,7 @@ void MidiStream::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("midi_get_pointer"), &MidiStream::midi_get_pointer);
 
 	ADD_PROPERTY(PropertyInfo(Variant::POOL_BYTE_ARRAY, "data", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_NOEDITOR | PROPERTY_USAGE_INTERNAL), "_set_data", "_get_data");
-	ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "midi_pointer", PROPERTY_HINT_RESOURCE_TYPE, "MidiFileReader"), "midi_set_pointer", "midi_get_pointer");
+	ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "midi_file", PROPERTY_HINT_RESOURCE_TYPE, "MidiFileReader"), "midi_set_pointer", "midi_get_pointer");
 }
 
 
@@ -179,15 +179,14 @@ void MidiStream::midi_load_filename(const String&filename)
 	midi_pointer = tml_load_filename(filename.utf8().get_data());
 }
 
-void MidiStream::midi_set_pointer(tml_message* midi_file) {
-	Ref<MidiFileReader> file;
-	file.instance();
-	midi_file = file->pointer;
-	midi_pointer = midi_file;
+void MidiStream::midi_set_pointer(Ref<MidiFileReader> midi_file) {
+	mfile = midi_file;
+	mfile.instance();
+	midi_pointer = mfile->pointer;
 }
 
-tml_message* MidiStream::midi_get_pointer() {
-	return midi_pointer;
+Ref<MidiFileReader> MidiStream::midi_get_pointer() {
+	return mfile ;
 }
 
 void MidiStream::midi_file_reading(uint8_t *b, int s) {
