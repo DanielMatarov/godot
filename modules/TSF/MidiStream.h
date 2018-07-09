@@ -24,7 +24,9 @@ class MidiStream : public AudioStream {
 	void *data;
 	uint32_t data_len;
 	void clear_data();
+	Ref<MidiFileReader> mfile;
 public:
+	
 	tml_message* midi_pointer;
 	MidiStream();
 	void reset();
@@ -36,8 +38,8 @@ public:
 	void set_data(const PoolVector<uint8_t> &p_data);
 	PoolVector<uint8_t> get_data() const;
 	void midi_load_filename(const String&filename);
-	void midi_set_pointer(tml_message* midi_file);
-	tml_message* midi_get_pointer();
+	void midi_set_pointer(Ref<MidiFileReader> midi_file);
+	Ref<MidiFileReader> midi_get_pointer();
 	void midi_file_reading(uint8_t *b, int s);
 	
 	void note_on(int n,float v);
