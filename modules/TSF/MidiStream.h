@@ -6,7 +6,8 @@
 #include "resource.h"
 #include "servers/audio/audio_stream.h"
 #include <stdio.h>
-#include "midi_file_reader.h"
+
+class MidiFileReader;
 
 class MidiStream : public AudioStream {
 	GDCLASS(MidiStream, AudioStream)
@@ -39,7 +40,7 @@ public:
 	PoolVector<uint8_t> get_data() const;
 	void midi_load_filename(const String&filename);
 	void midi_set_pointer(Ref<MidiFileReader> midi_file);
-	Ref<MidiFileReader> midi_get_pointer();
+	virtual Ref<MidiFileReader> midi_get_pointer();
 	void midi_file_reading(uint8_t *b, int s);
 	
 	void note_on(int n,float v);
