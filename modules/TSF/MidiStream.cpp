@@ -3,7 +3,7 @@
 #include "servers/audio/audio_stream.h"
 #include "MidiStream.h"
 #include "MidiStreamPlayback.h"
-
+#include "midi_file_reader.h"
 
 
 
@@ -181,8 +181,9 @@ void MidiStream::midi_load_filename(const String&filename)
 
 void MidiStream::midi_set_pointer(Ref<MidiFileReader> midi_file) {
 	mfile = midi_file;
-	mfile.instance();
-	midi_pointer = mfile->pointer;
+	midi_file.instance();
+	midi_pointer = midi_file->pointer;
+	
 }
 
 Ref<MidiFileReader> MidiStream::midi_get_pointer() {
