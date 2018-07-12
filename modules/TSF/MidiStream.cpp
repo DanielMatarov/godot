@@ -1,10 +1,11 @@
 #define TSF_IMPLEMENTATION
 #define TML_IMPLEMENTATION
+#include "tsf.h"
+#include "tml.h"
+#include "midi_file_reader.h"
 #include "servers/audio/audio_stream.h"
 #include "MidiStream.h"
 #include "MidiStreamPlayback.h"
-#include "midi_file_reader.h"
-
 
 
 MidiStream::MidiStream(){
@@ -180,10 +181,10 @@ void MidiStream::midi_load_filename(const String&filename)
 }
 
 void MidiStream::midi_set_pointer(Ref<MidiFileReader> midi_file) {
-	mfile = midi_file;
-	midi_file.instance();
-	midi_pointer = midi_file->pointer;
-	
+	if (midi_file.is_valid()) {
+		mfile = midi_file;
+		midi_pointer = midi_file->pointer;
+	}
 }
 
 Ref<MidiFileReader> MidiStream::midi_get_pointer() {

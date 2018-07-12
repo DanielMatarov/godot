@@ -1,7 +1,11 @@
+#include "tsf.h"
+#include "tml.h"
+#include "midi_file_reader.h"
 #include "MidiStream.h"
 #include "MidiStreamPlayback.h"
 #include "math/math_funcs.h"
 #include "print_string.h"
+
 
 class MidiStream;
 

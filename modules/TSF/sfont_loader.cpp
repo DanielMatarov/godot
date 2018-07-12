@@ -1,5 +1,7 @@
+#include "tsf.h"
+#include "tml.h"
+#include "midi_file_reader.h"
 #include "sfont_loader.h"
-
 #include "io/resource_saver.h"
 #include "os/file_access.h"
 #include "scene/resources/texture.h"

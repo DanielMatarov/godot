@@ -1,4 +1,5 @@
-
+#include "tsf.h"
+#include "tml.h"
 #include "midi_file_reader.h"
 #include "servers/audio/audio_stream.h"
 
