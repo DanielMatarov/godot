@@ -1,10 +1,12 @@
-
+#include "tsf.h"
+#include "tml.h"
+#include "midi_file_reader.h"
 #include "register_types.h"
 #include "class_db.h"
 #include "MidiStream.h"
 #include "MidiStreamPlayback.h"
 #include "sfont_loader.h"
-#include "midi_file_reader.h"
+
 #include "midi_loader.h"
 
 

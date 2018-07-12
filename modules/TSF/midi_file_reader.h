@@ -1,7 +1,6 @@
 #ifndef MIDIFILEREADER_H
 #define	MIDIFILEREADER_H
 
-#include "MidiStream.h"
 #include "reference.h"
 #include "resource.h"
 

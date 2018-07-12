@@ -1,13 +1,12 @@
 #ifndef MIDISTREAM_H
 #define MIDISTREAM_H
-#include "tsf.h"
-#include "tml.h"
+
 #include "reference.h"
 #include "resource.h"
 #include "servers/audio/audio_stream.h"
 #include <stdio.h>
 
-class MidiFileReader;
+
 
 class MidiStream : public AudioStream {
 	GDCLASS(MidiStream, AudioStream)
@@ -21,14 +20,16 @@ class MidiStream : public AudioStream {
 	int preset;
 	char* sf_filename;
 	tsf* tsf_pointer;
+	
+
 	double midi_pb_time;
 	void *data;
 	uint32_t data_len;
 	void clear_data();
 	Ref<MidiFileReader> mfile;
 public:
-	
-	tml_message* midi_pointer;
+	tml_message * midi_pointer;
+
 	MidiStream();
 	void reset();
 	void set_position(uint64_t pos);
