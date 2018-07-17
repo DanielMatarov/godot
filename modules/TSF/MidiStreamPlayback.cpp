@@ -49,10 +49,10 @@ void MidiStreamPlayback::mix(AudioFrame *p_buffer, float p_rate, int p_frames) {
 	}
 	float *buf = (float *)pcm_buffer;
 	if (base->midi_pointer != NULL) {
-		base->midi_file_reading((uint8_t*)buf, MAX(PCM_BUFFER_SIZE, p_frames) * 2);
+		base->midi_file_playback((uint8_t*)buf, MAX(PCM_BUFFER_SIZE, p_frames) * 2);
 	}
 		
-	base->buffer_function(buf, MIN(PCM_BUFFER_SIZE, p_frames));
+	base->render_buffer(buf, MIN(PCM_BUFFER_SIZE, p_frames));
 	
 	for (int i = 0; i < p_frames; i++) {
 		float l = *buf++;
