@@ -10,12 +10,16 @@
 
 MidiStream::MidiStream(){
 	sample_rate=44100;
-	tsf_pointer = NULL;
 	gain = 0;
+
+	tsf_pointer = NULL;
 	midi_pointer = NULL;
+
 	midi_pb_time = 0;
+
 	data = NULL;
 	data_len = 0;
+
 	preset = 0;
 }
 
@@ -67,7 +71,7 @@ void MidiStream::set_data(const PoolVector<uint8_t> &p_data) {
 }
 
 
-void MidiStream::buffer_function(float* b, int s){
+void MidiStream::render_buffer(float* b, int s){
 	if (tsf_pointer == NULL) {
 		return;
 	}
@@ -92,11 +96,15 @@ PoolVector<uint8_t> MidiStream::get_data() const {
 
 void MidiStream::note_on(int n, float v)
 {
+	if (tsf_pointer == NULL) {
+		return;
+	}
 	tsf_note_on(tsf_pointer, preset, n, v);
 }
 
 void MidiStream::note_off(int n)
 {
+	ERR_FAIL_NULL(tsf_pointer)
 	tsf_note_off(tsf_pointer, preset, n);
 }
 
@@ -111,37 +119,43 @@ void MidiStream::set_preset(int pr)
 
 char* MidiStream::get_preset_name(int pr)
 {
+	 ERR_FAIL_NULL(tsf_pointer)
  	 return (char*)tsf_get_presetname(tsf_pointer, pr);
-	
 }
 
 int MidiStream::get_preset_count()
 {
+	ERR_FAIL_NULL(tsf_pointer)
 	return tsf_get_presetcount(tsf_pointer);
 }
 
 void MidiStream::set_channel_pan(int chn, float pan)
 {
+	ERR_FAIL_NULL(tsf_pointer)
 	tsf_channel_set_pan(tsf_pointer, chn, pan);
 }
 
 void MidiStream::set_channel_volume(int chn, float vol)
 {
+	ERR_FAIL_NULL(tsf_pointer)
 	tsf_channel_set_volume(tsf_pointer, chn, vol);
 }
 
 void MidiStream::set_channel_tuning(int chn, float tun)
 {
+	ERR_FAIL_NULL(tsf_pointer)
 	tsf_channel_set_tuning(tsf_pointer, chn, tun);
 }
 
 void MidiStream::set_channel_pitchwheel(int chn, float pw)
 {
+	ERR_FAIL_NULL(tsf_pointer)
 	tsf_channel_set_pitchwheel(tsf_pointer, chn, pw);
 }
 
 void MidiStream::set_channel_pitchrange(int chn, float pr)
 {
+	ERR_FAIL_NULL(tsf_pointer)
 	tsf_channel_set_pitchrange(tsf_pointer, chn, pr);
 }
 
@@ -161,11 +175,11 @@ void MidiStream::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("set_channel_pitchrange", "channel", "pitch_range"), &MidiStream::set_channel_pitchrange);
 	ClassDB::bind_method(D_METHOD("_set_data", "data"), &MidiStream::set_data);
 	ClassDB::bind_method(D_METHOD("_get_data"), &MidiStream::get_data);
-	ClassDB::bind_method(D_METHOD("midi_set_pointer", "midi_file"), &MidiStream::midi_set_pointer);
-	ClassDB::bind_method(D_METHOD("midi_get_pointer"), &MidiStream::midi_get_pointer);
+	ClassDB::bind_method(D_METHOD("set_midi_file", "midi_file"), &MidiStream::set_midi_file);
+	ClassDB::bind_method(D_METHOD("get_midi_file"), &MidiStream::get_midi_file);
 
 	ADD_PROPERTY(PropertyInfo(Variant::POOL_BYTE_ARRAY, "data", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_NOEDITOR | PROPERTY_USAGE_INTERNAL), "_set_data", "_get_data");
-	ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "midi_file", PROPERTY_HINT_RESOURCE_TYPE, "MidiFileReader"), "midi_set_pointer", "midi_get_pointer");
+	ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "midi_file", PROPERTY_HINT_RESOURCE_TYPE, "MidiFileReader"), "set_midi_file", "get_midi_file");
 }
 
 
@@ -180,18 +194,18 @@ void MidiStream::midi_load_filename(const String&filename)
 	midi_pointer = tml_load_filename(filename.utf8().get_data());
 }
 
-void MidiStream::midi_set_pointer(Ref<MidiFileReader> midi_file) {
+void MidiStream::set_midi_file(Ref<MidiFileReader> midi_file) {
 	if (midi_file.is_valid()) {
 		mfile = midi_file;
 		midi_pointer = midi_file->pointer;
 	}
 }
 
-Ref<MidiFileReader> MidiStream::midi_get_pointer() {
+Ref<MidiFileReader> MidiStream::get_midi_file() {
 	return mfile ;
 }
 
-void MidiStream::midi_file_reading(uint8_t *b, int s) {
+void MidiStream::midi_file_playback(uint8_t *b, int s) {
 
 	
 	
