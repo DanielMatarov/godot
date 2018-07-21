@@ -119,13 +119,13 @@ void MidiStream::set_preset(int pr)
 
 char* MidiStream::get_preset_name(int pr)
 {
-	 ERR_FAIL_NULL(tsf_pointer)
+	 ERR_FAIL_NULL_V(tsf_pointer, 0)
  	 return (char*)tsf_get_presetname(tsf_pointer, pr);
 }
 
 int MidiStream::get_preset_count()
 {
-	ERR_FAIL_NULL(tsf_pointer)
+	ERR_FAIL_NULL_V(tsf_pointer, 0)
 	return tsf_get_presetcount(tsf_pointer);
 }
 
