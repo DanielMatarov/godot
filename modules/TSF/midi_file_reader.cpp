@@ -21,6 +21,7 @@ void MidiFileReader::clear_data() {
 }
 
 void MidiFileReader::set_data(const PoolVector<uint8_t> &p_data) {
+	//set the midi pointer by loading from memory
 	printf("data getting set");
 	clear_data();
 

@@ -45,7 +45,7 @@ void ResourceImporterSfont::get_import_options(List<ImportOption> *r_options, in
 }
 
 Error ResourceImporterSfont::import(const String &p_source_file, const String &p_save_path, const Map<StringName, Variant> &p_options, List<String> *r_platform_variants, List<String> *r_gen_files){
-	
+	//writes .sf2 file data to memory and calls on set data function in MidiStream 
 	FileAccess *f = FileAccess::open(p_source_file, FileAccess::READ);
 	if (!f) {
 		ERR_FAIL_COND_V(!f, ERR_CANT_OPEN);

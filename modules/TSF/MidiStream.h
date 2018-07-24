@@ -15,7 +15,6 @@ class MidiStream : public AudioStream {
 
 	friend class MidiStreamPlayback;
 
-	
 	uint64_t pos;
 
 	int sample_rate;
