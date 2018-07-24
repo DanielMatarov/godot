@@ -4,7 +4,7 @@
 #include "reference.h"
 #include "resource.h"
 
-
+//Creating a seperate resource for loading midi files from memory
 class MidiFileReader : public Resource {
 	GDCLASS(MidiFileReader, Resource)
 	OBJ_SAVE_TYPE(Resource)

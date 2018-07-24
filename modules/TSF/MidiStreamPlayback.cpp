@@ -48,10 +48,11 @@ void MidiStreamPlayback::mix(AudioFrame *p_buffer, float p_rate, int p_frames) {
 		return;
 	}
 	float *buf = (float *)pcm_buffer;
+	// this checks if a .midi file is loaded and calls the midi file playback function if it is
 	if (base->midi_pointer != NULL) {
 		base->midi_file_playback((uint8_t*)buf, MAX(PCM_BUFFER_SIZE, p_frames) * 2);
 	}
-		
+	// call on the render function to 
 	base->render_buffer(buf, MIN(PCM_BUFFER_SIZE, p_frames));
 	
 	for (int i = 0; i < p_frames; i++) {

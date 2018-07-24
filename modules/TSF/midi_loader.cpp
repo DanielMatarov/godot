@@ -42,7 +42,7 @@ void ResourceImporterMidi::get_import_options(List<ImportOption> *r_options, int
 }
 
 Error ResourceImporterMidi::import(const String &p_source_file, const String &p_save_path, const Map<StringName, Variant> &p_options, List<String> *r_platform_variants, List<String> *r_gen_files) {
-
+	//writes .midi file data to memory and calls on set data function in MidiFileReader
 	FileAccess *f = FileAccess::open(p_source_file, FileAccess::READ);
 	if (!f) {
 		ERR_FAIL_COND_V(!f, ERR_CANT_OPEN);
