@@ -47,7 +47,7 @@
 			</description>
 		</method>
 		<method name="load">
-			<return type="int" enum="Error">
+			<return type="void">
 			</return>
 			<argument index="0" name="path" type="String">
 			</argument>

@@ -7,8 +7,6 @@
 		Base class of all sort of input event. See [method Node._input].
 	</description>
 	<tutorials>
-		<link>http://docs.godotengine.org/en/3.0/tutorials/inputs/inputevent.html</link>
-		<link>http://docs.godotengine.org/en/3.0/tutorials/2d/2d_transforms.html</link>
 	</tutorials>
 	<demos>
 	</demos>
@@ -17,7 +15,6 @@
 			<return type="String">
 			</return>
 			<description>
-				Returns a [String] representation of the event.
 			</description>
 		</method>
 		<method name="get_action_strength" qualifiers="const">
@@ -34,7 +31,6 @@
 			<argument index="0" name="action" type="String">
 			</argument>
 			<description>
-				Returns [code]true[/code] if this input event matches a pre-defined action of any type.
 			</description>
 		</method>
 		<method name="is_action_pressed" qualifiers="const">
@@ -43,7 +39,6 @@
 			<argument index="0" name="action" type="String">
 			</argument>
 			<description>
-				Returns [code]true[/code] if the given action is being pressed (and is not an echo event for KEY events). Not relevant for the event types [code]MOUSE_MOTION[/code], [code]SCREEN_DRAG[/code] or [code]NONE[/code].
 			</description>
 		</method>
 		<method name="is_action_released" qualifiers="const">
@@ -52,28 +47,24 @@
 			<argument index="0" name="action" type="String">
 			</argument>
 			<description>
-				Returns [code]true[/code] if the given action is released (i.e. not pressed). Not relevant for the event types [code]MOUSE_MOTION[/code], [code]SCREEN_DRAG[/code] or [code]NONE[/code].
 			</description>
 		</method>
 		<method name="is_action_type" qualifiers="const">
 			<return type="bool">
 			</return>
 			<description>
-				Returns [code]true[/code] if this input event's type is one of the [code]InputEvent[/code] constants.
 			</description>
 		</method>
 		<method name="is_echo" qualifiers="const">
 			<return type="bool">
 			</return>
 			<description>
-				Returns [code]true[/code] if this input event is an echo event (only for events of type KEY).
 			</description>
 		</method>
 		<method name="is_pressed" qualifiers="const">
 			<return type="bool">
 			</return>
 			<description>
-				Returns [code]true[/code] if this input event is pressed. Not relevant for the event types [code]MOUSE_MOTION[/code], [code]SCREEN_DRAG[/code] or [code]NONE[/code].
 			</description>
 		</method>
 		<method name="shortcut_match" qualifiers="const">
@@ -97,7 +88,6 @@
 	</methods>
 	<members>
 		<member name="device" type="int" setter="set_device" getter="get_device">
-			The event's device ID.
 		</member>
 	</members>
 	<constants>

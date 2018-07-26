@@ -147,12 +147,6 @@
 				Returns the command line arguments passed to the engine.
 			</description>
 		</method>
-		<method name="get_connected_midi_inputs">
-			<return type="PoolStringArray">
-			</return>
-			<description>
-			</description>
-		</method>
 		<method name="get_date" qualifiers="const">
 			<return type="Dictionary">
 			</return>
@@ -366,13 +360,6 @@
 			</return>
 			<description>
 				Returns the amount of time passed in milliseconds since the engine started.
-			</description>
-		</method>
-		<method name="get_ticks_usec" qualifiers="const">
-			<return type="int">
-			</return>
-			<description>
-				Returns the amount of time passed in microseconds since the engine started.
 			</description>
 		</method>
 		<method name="get_time" qualifiers="const">

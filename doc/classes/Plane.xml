@@ -7,7 +7,6 @@
 		Plane represents a normalized plane equation. Basically, "normal" is the normal of the plane (a,b,c normalized), and "d" is the distance from the origin to the plane (in the direction of "normal"). "Over" or "Above" the plane is considered the side of the plane towards where the normal is pointing.
 	</description>
 	<tutorials>
-		<link>http://docs.godotengine.org/en/3.0/tutorials/math/index.html</link>
 	</tutorials>
 	<demos>
 	</demos>
@@ -24,7 +23,6 @@
 			<argument index="3" name="d" type="float">
 			</argument>
 			<description>
-				Creates a plane from the four parameters "a", "b", "c" and "d".
 			</description>
 		</method>
 		<method name="Plane">
@@ -37,7 +35,6 @@
 			<argument index="2" name="v3" type="Vector3">
 			</argument>
 			<description>
-				Creates a plane from three points.
 			</description>
 		</method>
 		<method name="Plane">
@@ -48,14 +45,12 @@
 			<argument index="1" name="d" type="float">
 			</argument>
 			<description>
-				Creates a plane from the normal and the plane's distance to the origin.
 			</description>
 		</method>
 		<method name="center">
 			<return type="Vector3">
 			</return>
 			<description>
-				Returns the center of the plane.
 			</description>
 		</method>
 		<method name="distance_to">
@@ -64,14 +59,12 @@
 			<argument index="0" name="point" type="Vector3">
 			</argument>
 			<description>
-				Returns the shortest distance from the plane to the position "point".
 			</description>
 		</method>
 		<method name="get_any_point">
 			<return type="Vector3">
 			</return>
 			<description>
-				Returns a point on the plane.
 			</description>
 		</method>
 		<method name="has_point">
@@ -82,7 +75,6 @@
 			<argument index="1" name="epsilon" type="float" default="0.00001">
 			</argument>
 			<description>
-				Returns true if "point" is inside the plane (by a very minimum threshold).
 			</description>
 		</method>
 		<method name="intersect_3">
@@ -93,7 +85,6 @@
 			<argument index="1" name="c" type="Plane">
 			</argument>
 			<description>
-				Returns the intersection point of the three planes "b", "c" and this plane. If no intersection is found null is returned.
 			</description>
 		</method>
 		<method name="intersects_ray">
@@ -104,7 +95,6 @@
 			<argument index="1" name="dir" type="Vector3">
 			</argument>
 			<description>
-				Returns the intersection point of a ray consisting of the position "from" and the direction normal "dir" with this plane. If no intersection is found null is returned.
 			</description>
 		</method>
 		<method name="intersects_segment">
@@ -115,7 +105,6 @@
 			<argument index="1" name="end" type="Vector3">
 			</argument>
 			<description>
-				Returns the intersection point of a segment from position "begin" to position "end" with this plane. If no intersection is found null is returned.
 			</description>
 		</method>
 		<method name="is_point_over">
@@ -124,14 +113,12 @@
 			<argument index="0" name="point" type="Vector3">
 			</argument>
 			<description>
-				Returns true if "point" is located above the plane.
 			</description>
 		</method>
 		<method name="normalized">
 			<return type="Plane">
 			</return>
 			<description>
-				Returns a copy of the plane, normalized.
 			</description>
 		</method>
 		<method name="project">
@@ -140,7 +127,6 @@
 			<argument index="0" name="point" type="Vector3">
 			</argument>
 			<description>
-				Returns the orthogonal projection of point "p" into a point in the plane.
 			</description>
 		</method>
 	</methods>

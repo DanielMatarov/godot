@@ -7,7 +7,6 @@
 		A Singleton that deals with inputs. This includes key presses, mouse buttons and movement, joypads, and input actions. Actions and their events can be set in the Project Settings / Input Map tab. Or be set with [InputMap].
 	</description>
 	<tutorials>
-		<link>http://docs.godotengine.org/en/3.0/tutorials/inputs/index.html</link>
 	</tutorials>
 	<demos>
 	</demos>
@@ -18,7 +17,6 @@
 			<argument index="0" name="action" type="String">
 			</argument>
 			<description>
-				This will simulate pressing the specified action.
 			</description>
 		</method>
 		<method name="action_release">
@@ -27,7 +25,6 @@
 			<argument index="0" name="action" type="String">
 			</argument>
 			<description>
-				If the specified action is already pressed, this will release it.
 			</description>
 		</method>
 		<method name="add_joy_mapping">
@@ -38,14 +35,12 @@
 			<argument index="1" name="update_existing" type="bool" default="false">
 			</argument>
 			<description>
-				Add a new mapping entry (in SDL2 format) to the mapping database. Optionally update already connected devices.
 			</description>
 		</method>
 		<method name="get_accelerometer" qualifiers="const">
 			<return type="Vector3">
 			</return>
 			<description>
-				If the device has an accelerometer, this will return the acceleration. Otherwise, it returns an empty [Vector3].
 			</description>
 		</method>
 		<method name="get_action_strength" qualifiers="const">
@@ -60,21 +55,18 @@
 			<return type="Array">
 			</return>
 			<description>
-				Returns an [Array] containing the device IDs of all currently connected joypads.
 			</description>
 		</method>
 		<method name="get_gravity" qualifiers="const">
 			<return type="Vector3">
 			</return>
 			<description>
-				If the device has an accelerometer, this will return the gravity. Otherwise, it returns an empty [Vector3].
 			</description>
 		</method>
 		<method name="get_gyroscope" qualifiers="const">
 			<return type="Vector3">
 			</return>
 			<description>
-				If the device has a gyroscope, this will return the rate of rotation in rad/s around a device's x, y, and z axis. Otherwise, it returns an empty [Vector3].
 			</description>
 		</method>
 		<method name="get_joy_axis" qualifiers="const">
@@ -85,7 +77,6 @@
 			<argument index="1" name="axis" type="int">
 			</argument>
 			<description>
-				Returns the current value of the joypad axis at given index (see [code]JOY_*[/code] constants in [@GlobalScope])
 			</description>
 		</method>
 		<method name="get_joy_axis_index_from_string">
@@ -126,7 +117,6 @@
 			<argument index="0" name="device" type="int">
 			</argument>
 			<description>
-				Returns a SDL2 compatible device guid on platforms that use gamepad remapping. Returns "Default Gamepad" otherwise.
 			</description>
 		</method>
 		<method name="get_joy_name">
@@ -135,7 +125,6 @@
 			<argument index="0" name="device" type="int">
 			</argument>
 			<description>
-				Returns the name of the joypad at the specified device index
 			</description>
 		</method>
 		<method name="get_joy_vibration_duration">
@@ -144,7 +133,6 @@
 			<argument index="0" name="device" type="int">
 			</argument>
 			<description>
-				Returns the duration of the current vibration effect in seconds.
 			</description>
 		</method>
 		<method name="get_joy_vibration_strength">
@@ -153,35 +141,30 @@
 			<argument index="0" name="device" type="int">
 			</argument>
 			<description>
-				Returns the strength of the joypad vibration: x is the strength of the weak motor, and y is the strength of the strong motor.
 			</description>
 		</method>
 		<method name="get_last_mouse_speed" qualifiers="const">
 			<return type="Vector2">
 			</return>
 			<description>
-				Returns the mouse speed for the last time the cursor was moved, and this until the next frame where the mouse moves. This means that even if the mouse is not moving, this function will still return the value of the last motion.
 			</description>
 		</method>
 		<method name="get_magnetometer" qualifiers="const">
 			<return type="Vector3">
 			</return>
 			<description>
-				If the device has a magnetometer, this will return the magnetic field strength in micro-Tesla for all axes.
 			</description>
 		</method>
 		<method name="get_mouse_button_mask" qualifiers="const">
 			<return type="int">
 			</return>
 			<description>
-				Returns mouse buttons as a bitmask. If multiple mouse buttons are pressed at the same time the bits are added together.
 			</description>
 		</method>
 		<method name="get_mouse_mode" qualifiers="const">
 			<return type="int" enum="Input.MouseMode">
 			</return>
 			<description>
-				Return the mouse mode. See the constants for more information.
 			</description>
 		</method>
 		<method name="is_action_just_pressed" qualifiers="const">
@@ -190,8 +173,6 @@
 			<argument index="0" name="action" type="String">
 			</argument>
 			<description>
-				Returns [code]true[/code] when the user starts pressing the action event, meaning it's true only on the frame that the user pressed down the button.
-				This is useful for code that needs to run only once when an action is pressed, instead of every frame while it's pressed.
 			</description>
 		</method>
 		<method name="is_action_just_released" qualifiers="const">
@@ -200,7 +181,6 @@
 			<argument index="0" name="action" type="String">
 			</argument>
 			<description>
-				Returns [code]true[/code] when the user stops pressing the action event, meaning it's true only on the frame that the user released the button.
 			</description>
 		</method>
 		<method name="is_action_pressed" qualifiers="const">
@@ -209,7 +189,6 @@
 			<argument index="0" name="action" type="String">
 			</argument>
 			<description>
-				Returns [code]true[/code] if you are pressing the action event.
 			</description>
 		</method>
 		<method name="is_joy_button_pressed" qualifiers="const">
@@ -220,7 +199,6 @@
 			<argument index="1" name="button" type="int">
 			</argument>
 			<description>
-				Returns [code]true[/code] if you are pressing the joypad button. (see [code]JOY_*[/code] constants in [@GlobalScope])
 			</description>
 		</method>
 		<method name="is_joy_known">
@@ -229,7 +207,6 @@
 			<argument index="0" name="device" type="int">
 			</argument>
 			<description>
-				Returns [code]true[/code] if the system knows the specified device. This means that it sets all button and axis indices exactly as defined in the [code]JOY_*[/code] constants (see [@GlobalScope]). Unknown joypads are not expected to match these constants, but you can still retrieve events from them.
 			</description>
 		</method>
 		<method name="is_key_pressed" qualifiers="const">
@@ -238,7 +215,6 @@
 			<argument index="0" name="scancode" type="int">
 			</argument>
 			<description>
-				Returns [code]true[/code] if you are pressing the key. You can pass [code]KEY_*[/code], which are pre-defined constants listed in [@GlobalScope].
 			</description>
 		</method>
 		<method name="is_mouse_button_pressed" qualifiers="const">
@@ -247,7 +223,6 @@
 			<argument index="0" name="button" type="int">
 			</argument>
 			<description>
-				Returns [code]true[/code] if you are pressing the mouse button. You can pass [code]BUTTON_*[/code], which are pre-defined constants listed in [@GlobalScope].
 			</description>
 		</method>
 		<method name="joy_connection_changed">
@@ -270,7 +245,6 @@
 			<argument index="0" name="event" type="InputEvent">
 			</argument>
 			<description>
-				Feeds an [InputEvent] to the game. Can be used to artificially trigger input events from code.
 			</description>
 		</method>
 		<method name="remove_joy_mapping">
@@ -279,7 +253,6 @@
 			<argument index="0" name="guid" type="String">
 			</argument>
 			<description>
-				Removes all mappings from the internal db that match the given uid.
 			</description>
 		</method>
 		<method name="set_custom_mouse_cursor">
@@ -292,7 +265,6 @@
 			<argument index="2" name="hotspot" type="Vector2" default="Vector2( 0, 0 )">
 			</argument>
 			<description>
-				Set a custom mouse cursor image, which is only visible inside the game window. The hotspot can also be specified. Passing [code]null[/code] to the image parameter resets to the system cursor. See enum [code]CURSOR_*[/code] for the list of shapes.
 			</description>
 		</method>
 		<method name="set_default_cursor_shape">
@@ -309,7 +281,6 @@
 			<argument index="0" name="mode" type="int" enum="Input.MouseMode">
 			</argument>
 			<description>
-				Set the mouse mode. See the constants for more information.
 			</description>
 		</method>
 		<method name="start_joy_vibration">
@@ -324,8 +295,6 @@
 			<argument index="3" name="duration" type="float" default="0">
 			</argument>
 			<description>
-				Starts to vibrate the joypad. Joypads usually come with two rumble motors, a strong and a weak one. weak_magnitude is the strength of the weak motor (between 0 and 1) and strong_magnitude is the strength of the strong motor (between 0 and 1). duration is the duration of the effect in seconds (a duration of 0 will try to play the vibration indefinitely).
-				Note that not every hardware is compatible with long effect durations, it is recommended to restart an effect if in need to play it for more than a few seconds.
 			</description>
 		</method>
 		<method name="stop_joy_vibration">
@@ -334,7 +303,6 @@
 			<argument index="0" name="device" type="int">
 			</argument>
 			<description>
-				Stops the vibration of the joypad.
 			</description>
 		</method>
 		<method name="warp_mouse_position">
@@ -343,7 +311,6 @@
 			<argument index="0" name="to" type="Vector2">
 			</argument>
 			<description>
-				Sets the mouse position to the specified vector.
 			</description>
 		</method>
 	</methods>
@@ -354,73 +321,51 @@
 			<argument index="1" name="connected" type="bool">
 			</argument>
 			<description>
-				Emitted when a joypad device has been connected or disconnected.
 			</description>
 		</signal>
 	</signals>
 	<constants>
 		<constant name="MOUSE_MODE_VISIBLE" value="0" enum="MouseMode">
-			Makes the mouse cursor visible if it is hidden.
 		</constant>
 		<constant name="MOUSE_MODE_HIDDEN" value="1" enum="MouseMode">
-			Makes the mouse cursor hidden if it is visible.
 		</constant>
 		<constant name="MOUSE_MODE_CAPTURED" value="2" enum="MouseMode">
-			Captures the mouse. The mouse will be hidden and unable to leave the game window. But it will still register movement and mouse button presses.
 		</constant>
 		<constant name="MOUSE_MODE_CONFINED" value="3" enum="MouseMode">
-			Makes the mouse cursor visible but confines it to the game window.
 		</constant>
 		<constant name="CURSOR_ARROW" value="0" enum="CursorShape">
-			Arrow cursor. Standard, default pointing cursor.
 		</constant>
 		<constant name="CURSOR_IBEAM" value="1" enum="CursorShape">
-			I-beam cursor. Usually used to show where the text cursor will appear when the mouse is clicked.
 		</constant>
 		<constant name="CURSOR_POINTING_HAND" value="2" enum="CursorShape">
-			Pointing hand cursor. Usually used to indicate the pointer is over a link or other interactable item.
 		</constant>
 		<constant name="CURSOR_CROSS" value="3" enum="CursorShape">
-			Cross cursor. Typically appears over regions in which a drawing operation can be performance or for selections.
 		</constant>
 		<constant name="CURSOR_WAIT" value="4" enum="CursorShape">
-			Wait cursor. Indicates that the application is busy performing an operation.
 		</constant>
 		<constant name="CURSOR_BUSY" value="5" enum="CursorShape">
-			Busy cursor. See [code]CURSOR_WAIT[/code].
 		</constant>
 		<constant name="CURSOR_DRAG" value="6" enum="CursorShape">
-			Drag cursor. Usually displayed when dragging something.
 		</constant>
 		<constant name="CURSOR_CAN_DROP" value="7" enum="CursorShape">
-			Can drop cursor. Usually displayed when dragging something to indicate that it can be dropped at the current position.
 		</constant>
 		<constant name="CURSOR_FORBIDDEN" value="8" enum="CursorShape">
-			Forbidden cursor. Indicates that the current action is forbidden (for example, when dragging something) or that the control at a position is disabled.
 		</constant>
 		<constant name="CURSOR_VSIZE" value="9" enum="CursorShape">
-			Vertical resize mouse cursor. A double headed vertical arrow. It tells the user they can resize the window or the panel vertically.
 		</constant>
 		<constant name="CURSOR_HSIZE" value="10" enum="CursorShape">
-			Horizontal resize mouse cursor. A double headed horizontal arrow. It tells the user they can resize the window or the panel horizontally.
 		</constant>
 		<constant name="CURSOR_BDIAGSIZE" value="11" enum="CursorShape">
-			Window resize mouse cursor. The cursor is a double headed arrow that goes from the bottom left to the top right. It tells the user they can resize the window or the panel both horizontally and vertically.
 		</constant>
 		<constant name="CURSOR_FDIAGSIZE" value="12" enum="CursorShape">
-			Window resize mouse cursor. The cursor is a double headed arrow that goes from the top left to the bottom right, the opposite of [code]CURSOR_BDIAGSIZE[/code]. It tells the user they can resize the window or the panel both horizontally and vertically.
 		</constant>
 		<constant name="CURSOR_MOVE" value="13" enum="CursorShape">
-			Move cursor. Indicates that something can be moved.
 		</constant>
 		<constant name="CURSOR_VSPLIT" value="14" enum="CursorShape">
-			Vertical split mouse cursor. On Windows, it's the same as [code]CURSOR_VSIZE[/code].
 		</constant>
 		<constant name="CURSOR_HSPLIT" value="15" enum="CursorShape">
-			Horizontal split mouse cursor. On Windows, it's the same as [code]CURSOR_HSIZE[/code].
 		</constant>
 		<constant name="CURSOR_HELP" value="16" enum="CursorShape">
-			Help cursor. Usually a question mark.
 		</constant>
 	</constants>
 </class>

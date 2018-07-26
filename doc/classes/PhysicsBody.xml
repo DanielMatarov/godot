@@ -7,7 +7,6 @@
 		PhysicsBody is an abstract base class for implementing a physics body. All *Body types inherit from it.
 	</description>
 	<tutorials>
-		<link>http://docs.godotengine.org/en/3.0/tutorials/physics/physics_introduction.html</link>
 	</tutorials>
 	<demos>
 	</demos>
@@ -18,7 +17,6 @@
 			<argument index="0" name="body" type="Node">
 			</argument>
 			<description>
-				Adds a body to the list of bodies that this body can't collide with.
 			</description>
 		</method>
 		<method name="get_collision_layer_bit" qualifiers="const">
@@ -43,7 +41,6 @@
 			<argument index="0" name="body" type="Node">
 			</argument>
 			<description>
-				Removes a body from the list of bodies that this body can't collide with.
 			</description>
 		</method>
 		<method name="set_collision_layer_bit">
@@ -69,12 +66,8 @@
 	</methods>
 	<members>
 		<member name="collision_layer" type="int" setter="set_collision_layer" getter="get_collision_layer">
-			The physics layers this area is in.
-			Collidable objects can exist in any of 32 different layers. These layers work like a tagging system, and are not visual. A collidable can use these layers to select with which objects it can collide, using the collision_mask property.
-			A contact is detected if object A is in any of the layers that object B scans, or object B is in any layer scanned by object A.
 		</member>
 		<member name="collision_mask" type="int" setter="set_collision_mask" getter="get_collision_mask">
-			The physics layers this area can scan for collisions.
 		</member>
 	</members>
 	<constants>
