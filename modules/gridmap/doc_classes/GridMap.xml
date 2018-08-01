@@ -10,7 +10,6 @@
 		A GridMap is split into a sparse collection of octants for efficient rendering and physics processing. Every octant has the same dimensions and can contain several cells.
 	</description>
 	<tutorials>
-		<link>http://docs.godotengine.org/en/3.0/tutorials/3d/using_gridmaps.html</link>
 	</tutorials>
 	<demos>
 	</demos>
@@ -19,7 +18,6 @@
 			<return type="void">
 			</return>
 			<description>
-				Clear all cells.
 			</description>
 		</method>
 		<method name="clear_baked_meshes">
@@ -52,7 +50,6 @@
 			<argument index="2" name="z" type="int">
 			</argument>
 			<description>
-				The [MeshLibrary] item index located at the grid-based X, Y and Z coordinates. If the cell is empty, [INVALID_CELL_ITEM] will be returned.
 			</description>
 		</method>
 		<method name="get_cell_item_orientation" qualifiers="const">
@@ -65,7 +62,6 @@
 			<argument index="2" name="z" type="int">
 			</argument>
 			<description>
-				The orientation of the cell at the grid-based X, Y and Z coordinates. -1 is retuned if the cell is empty.
 			</description>
 		</method>
 		<method name="get_collision_layer_bit" qualifiers="const">
@@ -88,14 +84,12 @@
 			<return type="Array">
 			</return>
 			<description>
-				Array of [Transform] and [Mesh] references corresponding to the non empty cells in the grid. The transforms are specified in world space.
 			</description>
 		</method>
 		<method name="get_used_cells" qualifiers="const">
 			<return type="Array">
 			</return>
 			<description>
-				Array of [Vector3] with the non empty cell coordinates in the grid map.
 			</description>
 		</method>
 		<method name="make_baked_meshes">
@@ -142,9 +136,6 @@
 			<argument index="4" name="orientation" type="int" default="0">
 			</argument>
 			<description>
-				Set the mesh index for the cell referenced by its grid-based X, Y and Z coordinates.
-				A negative item index will clear the cell.
-				Optionally, the item's orientation can be passed.
 			</description>
 		</method>
 		<method name="set_clip">
@@ -192,33 +183,26 @@
 	</methods>
 	<members>
 		<member name="cell_center_x" type="bool" setter="set_center_x" getter="get_center_x">
-			If [code]true[/code] grid items are centered on the X axis.
 		</member>
 		<member name="cell_center_y" type="bool" setter="set_center_y" getter="get_center_y">
-			If [code]true[/code] grid items are centered on the Y axis.
 		</member>
 		<member name="cell_center_z" type="bool" setter="set_center_z" getter="get_center_z">
-			If [code]true[/code] grid items are centered on the Z axis.
 		</member>
 		<member name="cell_octant_size" type="int" setter="set_octant_size" getter="get_octant_size">
-			The size of each octant measured in number of cells. This applies to all three axis.
 		</member>
 		<member name="cell_scale" type="float" setter="set_cell_scale" getter="get_cell_scale">
 		</member>
 		<member name="cell_size" type="Vector3" setter="set_cell_size" getter="get_cell_size">
-			The dimensions of the grid's cells.
 		</member>
 		<member name="collision_layer" type="int" setter="set_collision_layer" getter="get_collision_layer">
 		</member>
 		<member name="collision_mask" type="int" setter="set_collision_mask" getter="get_collision_mask">
 		</member>
 		<member name="theme" type="MeshLibrary" setter="set_theme" getter="get_theme">
-			The assigned [MeshLibrary].
 		</member>
 	</members>
 	<constants>
 		<constant name="INVALID_CELL_ITEM" value="-1">
-			Invalid cell item that can be used in [method set_cell_item] to clear cells (or represent an empty cell in [method get_cell_item]).
 		</constant>
 	</constants>
 </class>

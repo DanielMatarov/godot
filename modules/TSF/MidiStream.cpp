@@ -192,6 +192,8 @@ void MidiStream::_bind_methods() {
 	ADD_PROPERTY(PropertyInfo(Variant::POOL_BYTE_ARRAY, "data", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_NOEDITOR | PROPERTY_USAGE_INTERNAL), "_set_data", "_get_data");
 	//adding the midi file loading as a property
 	ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "midi_file", PROPERTY_HINT_RESOURCE_TYPE, "MidiFileReader"), "set_midi_file", "get_midi_file");
+
+	
 }
 
 
